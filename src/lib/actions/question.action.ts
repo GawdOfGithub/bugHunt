@@ -3,8 +3,10 @@ import Question from "@/database/question.model";
 import { connectToDatabase } from "./mongoose";
 import Tag from "@/database/tag.model";
 import User from "@/database/user.modal";
-import { GetQuestionParams,getQuestionById } from "./shared.types";
+import { GetQuestionParams,getQuestionById,QuestionVoteParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
+import { truncate } from "fs/promises";
+
 
 
 export async function createQuestion(params:any)
@@ -76,3 +78,61 @@ export async function getQuestions() {
 
     
 }
+export async function upvoteQuestion({hasDownVoted,hasUpvoted,questionId,userId,path}:QuestionVoteParams){
+    try{
+        connectToDatabase()
+        let updateQuery = {}
+        if(hasUpvoted)
+        {
+            updateQuery ={$pull:{upvotes:userId}}
+        }
+        else if(hasDownVoted)
+        {
+            updateQuery ={
+                $pull:{downvotes:userId},
+                $push:{upvotes:userId}
+            }
+        }
+            else{
+                updateQuery ={$addToSet:{upvotes:userId}}
+            }
+            const question = await Question.findByIdAndUpdate(questionId,updateQuery,{new:true})
+            if(!question){
+                throw new Error("Question not found")
+            }
+            revalidatePath(path)
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+export async function downvoteQuestion({hasDownVoted,hasUpvoted,questionId,userId,path}:QuestionVoteParams){
+    try{
+        connectToDatabase()
+        let updateQuery = {}
+        if(hasUpvoted)
+        {
+            updateQuery ={$pull:{upvotes:userId},$push:{downvotes:userId}}
+        }
+        else if(hasDownVoted)
+        {
+            updateQuery ={
+                $pull:{downvotes:userId},
+            }
+        }
+            else{
+                updateQuery ={$addToSet:{downvotes:userId}}
+            }
+            const question = await Question.findByIdAndUpdate(questionId,updateQuery,{new:true})
+            if(!question){
+                throw new Error("Question not found")
+            }
+            revalidatePath(path)
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
+}
+

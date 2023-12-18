@@ -61,4 +61,12 @@ export interface getQuestionById
 {
     id:string
 }
-//timestamp -4 min 39 sec  title - display question at homepage
+export interface QuestionVoteParams {
+    questionId:string,
+    userId:string,
+    hasUpvoted:boolean,
+    hasDownVoted:boolean,
+    path:string
+
+
+}

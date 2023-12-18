@@ -11,6 +11,7 @@ import { useRouter,usePathname } from 'next/navigation'
 import { auth } from '@clerk/nextjs'
 import { useState } from 'react'
 import { createAnswer } from '@/lib/actions/answer.action'
+
 import {
   Form,
   FormControl,
@@ -31,6 +32,7 @@ type Props = {
 const Test = ({mongoUser,question}: Props) => {
 const router = useRouter()
 const pathname = usePathname()
+const route = useRouter()
 
 
  const [isSubmitting, setIsSubmitting] = useState(false);
@@ -54,6 +56,7 @@ const pathname = usePathname()
 
 
         })
+        route.push("/")
   
     console.log(values);
    

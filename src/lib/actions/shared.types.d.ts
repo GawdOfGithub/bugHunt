@@ -70,3 +70,12 @@ export interface QuestionVoteParams {
 
 
 }
+export interface AnswerVoteParams {
+    answerId:string,
+    userId:string,
+    hasUpvoted:boolean,
+    hasDownVoted:boolean,
+    path:string
+
+
+}

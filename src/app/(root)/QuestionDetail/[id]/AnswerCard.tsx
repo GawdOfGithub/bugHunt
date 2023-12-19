@@ -1,10 +1,26 @@
 import React from 'react';
-import { Badge } from '../ui/badge';
+import { Badge } from '../../components/ui/badge';
 import Link from 'next/link';
-import Votes from './Votes';
+import Votes from '../../components/shared/Votes';
 import {auth} from '@clerk/nextjs'
 import getUserById from '@/lib/actions/user.action';
 import { redirect } from 'next/navigation';
+import { ObjectId } from 'mongodb';
+type Author = {
+  _id: ObjectId;
+  clerkId: string;
+  name: string;
+  picture: string;
+};
+
+type Answer = {
+  _id: ObjectId;
+  content: string;
+  views: number;
+  upvotes: ObjectId[]; 
+  downvotes: ObjectId[]; 
+  author: Author;
+};
 type TagType = {
   _id?: number;
   name?: string;
@@ -15,6 +31,8 @@ type AuthorType = {
   name?: string;
   picture?: string;
 };
+type answers = Answer[];
+
 
 type Props = {
   _id: string;
@@ -24,12 +42,19 @@ type Props = {
   author: AuthorType; // Change 'authors' to 'author' since it's a single object
   upvotes: number[];
   views: number;
+  answers:{
+_id:string,
+content:string,
+views:number,
+
+  }[]
 };
 
-const QuestionCard = async({ _id, author, downvotes, title, tags, upvotes }: Props) => {
-  
+const AnswerCard = async({ _id, author, downvotes, title, tags, upvotes,answers }: Props) => {
+
   try
   {
+    console.log(`This is coming from here${answers[0]}`);
     const {userId} = auth()
   if(!userId)  redirect('/sign-in')
 
@@ -72,6 +97,11 @@ const QuestionCard = async({ _id, author, downvotes, title, tags, upvotes }: Pro
            
          </div>
        </div>
+       <div>
+        
+       </div>
+     
+
      </div>
      </>
    );
@@ -90,4 +120,4 @@ const QuestionCard = async({ _id, author, downvotes, title, tags, upvotes }: Pro
  
 };
 
-export default QuestionCard;
+export default AnswerCard;

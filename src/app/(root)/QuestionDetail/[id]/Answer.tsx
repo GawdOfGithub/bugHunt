@@ -133,7 +133,7 @@ const pathname = usePathname()
       onBlur={field.onBlur}
       onEditorChange={(content)=>field.onChange(content)}
       init={{
-        height: 500,
+        height: 1000,
         width:1000,
         menubar: false,
         plugins: [

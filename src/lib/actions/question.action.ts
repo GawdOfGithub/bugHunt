@@ -3,6 +3,7 @@ import Question from "@/database/question.model";
 import { connectToDatabase } from "./mongoose";
 import Tag from "@/database/tag.model";
 import User from "@/database/user.modal";
+import Answer from "@/database/answer.model";
 import { GetQuestionParams,getQuestionById,QuestionVoteParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import { truncate } from "fs/promises";
@@ -43,16 +44,33 @@ export async function createQuestion(params:any)
         console.log(error);
     }
 }
- export async function getQuestionById(params:getQuestionById)
+ export async function getQuestionById({id}:getQuestionById)
  {
    try
     {
         connectToDatabase()
-    const {id} = params
     console.log(id);
     const question = await Question.findById(id)
-    .populate({path:'tags',model:Tag,select:'_id name'})
-    .populate({path:'author',model:User,select:'_id clerkId name picture'})
+    .populate({
+        path: 'tags',
+        model: Tag,
+        select: '_id name'
+      })
+      .populate({
+        path: 'author',
+        model: User,
+        select: '_id clerkId name picture'
+      })
+      .populate({
+        path: 'answers',
+        model: Answer,
+        select: '_id content views upvotes downvotes',
+        populate: {
+          path: 'author', 
+          model: User,
+          select: '_id clerkId name picture' 
+        }
+      });
     return question
   
     }

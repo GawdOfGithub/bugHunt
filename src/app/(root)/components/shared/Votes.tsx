@@ -10,6 +10,8 @@ import { upvoteQuestion, downvoteQuestion } from '@/lib/actions/question.action'
 import { upvoteAnswer, downvoteAnswer } from '@/lib/actions/answer.action';
 import { usePathname, useRouter } from 'next/navigation';
 import { toggleSavedQuestion } from '@/lib/actions/user.action';
+import { useEffect } from 'react';
+import { viewQuestion } from '@/lib/actions/interaction.action';
 
 type Props = {
   type: string,
@@ -84,6 +86,17 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
       path:pathname
     })
   };
+
+
+  
+  useEffect(()=>{
+    viewQuestion({
+      questionId:JSON.parse(itemId),
+      userId:userId? JSON.parse(userId):undefined
+    })
+    
+  },[itemId,userId])
+
 
   return (
     <div className="flex gap-4">

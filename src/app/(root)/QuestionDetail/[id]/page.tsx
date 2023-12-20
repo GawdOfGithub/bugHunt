@@ -17,7 +17,7 @@ type Props = {
          id:string
       }
   }
-  
+
 
 const  page =async ({params}:Props) => {
   

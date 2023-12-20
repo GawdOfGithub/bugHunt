@@ -79,3 +79,21 @@ export interface ToggleSavedQuestionParams{
     questionId:string
     path:string
 }
+export interface ViewQuestionParams{
+    questionId:string
+    userId:string
+}
+export interface GetTopInteractedTagParams{
+    userId:string
+    limit?:number
+}
+export interface getQuestionByTagIdParams{
+    tagId:string
+    page?:number
+    pageSize?:number
+    searchQuery?:string
+
+}
+export interface GetUserByIdParams{
+    userId:string
+}

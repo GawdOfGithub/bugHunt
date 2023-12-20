@@ -1,6 +1,4 @@
 import { Schema,model,models,Document } from "mongoose"
-
-import { string } from "zod"
 export interface IInteraction extends Document {
     user:Schema.Types.ObjectId;
     action:string
@@ -10,7 +8,7 @@ export interface IInteraction extends Document {
     createdAt:Date
 }
 const InteractionSchema = new Schema({
-user:{types:Schema.Types.ObjectId,ref:'User',required:true},
+user:{type:Schema.Types.ObjectId,ref:'User',required:true},
 action:{type:String,required:true},
 question:{type:Schema.Types.ObjectId, ref:'Question'},
 answer:{type:Schema.Types.ObjectId, ref:'Answer'},
@@ -19,3 +17,4 @@ createdAt:Date
 
 })
 const Interaction = models.Interaction || model('Interaction',InteractionSchema)
+export default Interaction

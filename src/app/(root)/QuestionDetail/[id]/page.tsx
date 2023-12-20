@@ -43,30 +43,7 @@ const {userId} = auth()
      <AnswerCard
   {...{_id, author, downvotes, title, tags, upvotes,views,answers  }}
 />
-{
-        answers.map((item:any)=>
-        (
-          <div key={item._id} className='flex flex-col'>
-           <div className="flex">
-          
-           <Avatar >
-      <AvatarImage src={item.author.picture} alt="@shadcn" height="500" width="500" />
-     
-      <AvatarFallback >CN</AvatarFallback>
-    
-    </Avatar>
-    <div>{item.author.name}</div>
-            </div>
-            <div>
-              {item.content}
-              </div>
-            
 
-          </div>
-
-        ))
-      
-  }
 
     </div>
   )

@@ -6,6 +6,12 @@ import {auth} from '@clerk/nextjs'
 import getUserById from '@/lib/actions/user.action';
 import { redirect } from 'next/navigation';
 import { ObjectId } from 'mongodb';
+import ParseHTML from '../../components/shared/ParseHTML';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { Avatar ,
+  AvatarFallback,
+  AvatarImage,
+} from '../../components/ui/avatar'
 type Author = {
   _id: ObjectId;
   clerkId: string;
@@ -92,13 +98,47 @@ const AnswerCard = async({ _id, author, downvotes, title, tags, upvotes,answers 
        <div className="flex gap-10">
          <div key={author._id} className="flex gap-52 mt-10">
            
-           <h2 className="text-black dark:text-white">{author.name}</h2>
+           
            
            
          </div>
        </div>
        <div>
-        
+       {
+        answers.map((item:any)=>
+        (
+          <div key={item._id} className='flex flex-col'>
+           <div className="flex">
+          
+           <Avatar >
+      <AvatarImage src={item.author.picture} alt="@shadcn" height="500" width="500" />
+     
+      <AvatarFallback >CN</AvatarFallback>
+    
+    </Avatar>
+    <div>{item.author.name}</div>
+            </div>
+            <div>
+            <ParseHTML data={item.content} />
+              </div>
+              <Votes
+       type ="answer"
+        upvotes={item.upvotes.length} 
+        downvotes={item.downvotes.length} 
+        itemId={JSON.stringify(item._id)}
+        userId={JSON.stringify(mongoUser._id)}
+        hasUpvoted={item.upvotes.includes(mongoUser._id)}
+        hasDownVoted={item.downvotes.includes(mongoUser._id)}
+        isSaved={mongoUser?.saved.includes(_id)}
+
+        />
+       {/* <div>{item.views} <VisibilityIcon/></div> */}
+
+          </div>
+
+        ))
+      
+  }
        </div>
      
 

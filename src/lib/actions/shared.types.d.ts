@@ -43,11 +43,6 @@ export interface UpdateUserParams{
     },
     path:string
 }
-export interface ToggleSavedQuestionParams{
-    userId:string,
-    QuestionId:string,
-    path:string
-}
 
 export interface CreateUserParams
 {
@@ -78,4 +73,9 @@ export interface AnswerVoteParams {
     path:string
 
 
+}
+export interface ToggleSavedQuestionParams{
+    userId:string
+    questionId:string
+    path:string
 }

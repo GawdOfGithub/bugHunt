@@ -9,6 +9,7 @@ import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
 import { upvoteQuestion, downvoteQuestion } from '@/lib/actions/question.action';
 import { upvoteAnswer, downvoteAnswer } from '@/lib/actions/answer.action';
 import { usePathname, useRouter } from 'next/navigation';
+import { toggleSavedQuestion } from '@/lib/actions/user.action';
 
 type Props = {
   type: string,
@@ -36,7 +37,7 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
           userId: JSON.parse(userId),
           path: pathname,
         });
-        router.push("/");
+      
       } else if (type === "answer") {
         await upvoteAnswer({
           hasDownVoted: hasDownVoted,
@@ -45,7 +46,7 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
           userId: JSON.parse(userId),
           path: pathname,
         });
-        router.push("/");
+      
       }
     } catch (error) {
       console.log(error);
@@ -76,8 +77,12 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
     }
   };
 
-  const handleSave = () => {
-    alert("hello world");
+  const handleSave = async() => {
+    await toggleSavedQuestion({
+      userId:JSON.parse(userId),
+      questionId:JSON.parse(itemId),
+      path:pathname
+    })
   };
 
   return (
@@ -90,9 +95,10 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
         {hasDownVoted ? <button onClick={handleDownvoted}><ThumbDownIcon /></button> : <button onClick={handleDownvoted}><ThumbDownOutlinedIcon /></button>}
         {downvotes}
       </div>
-      <div className="flex-col ">
+      { type=="question" &&
+      (<div className="flex-col ">
         {isSaved ? <button onClick={handleSave}><StarIcon /></button> : <button onClick={handleSave}><StarOutlineIcon /></button>}
-      </div>
+      </div>)}
     </div>
   );
 };

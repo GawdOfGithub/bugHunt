@@ -7,6 +7,7 @@ import LocalSearchBar from '../components/shared/search/LocalSearchBar'
 import { Button } from '../components/ui/button'
 import Filter from '../components/shared/FIlter/filter'
 import FilterSmallScreen from '../components/shared/FIlter/filterSmallScreen'
+
 import QuestionCard from '../components/shared/QuestionCard'
 import { getQuestions } from '@/lib/actions/question.action'
 import { HomeFilterData } from '@/constants'

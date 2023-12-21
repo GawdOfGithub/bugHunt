@@ -4,6 +4,7 @@ import { QuestionDataType } from "."
 import {TagDataType} from "."
 import {FilerDataType} from "."
 import { tempQuestionDataType } from "."
+
 export const  theme:themeType[] =
 [
     {name:"☀️Light Mode ",value:"light"},
@@ -15,6 +16,7 @@ export const Sidebar:SideBarType[] =
 [
 
     { name: "🏠 Home", link: "/" },
+    { name: "Profile", link: "/" },
   { name: "📚 Collections", link: "/Collections" },
   { name: "👥 Community", link: "/Community" },
   { name: "🔍 Find Jobs", link: "/Find Jobs" },

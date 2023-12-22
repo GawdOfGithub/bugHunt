@@ -18,6 +18,7 @@ const page = async(props: Props) => {
 
 
   return (
+    
     <div className='z-50 text-white mt-12  '>
       <div className='flex flex-row justify-between gap-20  max-sm:flex-col max-sm:gap-[3rem]'>
       <Button className='primary gradient bg-yellow-600 dark:text-white  max-sm:w-32 ml-40'>Ask A Question</Button>

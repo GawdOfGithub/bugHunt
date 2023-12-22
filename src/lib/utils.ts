@@ -5,10 +5,13 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const getJoinedDate = (date:Date):string =>
-{
-  const month = date.toLocaleString('default',{month:'long'})
-  const year = date.getFullYear()
-  const joinedDate = `${month} ${year}`
-  return joinedDate
-}
+export const getJoinedDate = (date: Date | undefined): string => {
+  if (!date) {
+    // Return some arbitrary date, e.g., January 1, 2000
+    const arbitraryDate = new Date(2000, 0, 1);
+    return arbitraryDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  }
+
+  const formattedDate = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  return formattedDate;
+};

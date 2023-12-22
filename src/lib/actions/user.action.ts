@@ -3,7 +3,7 @@ import User from "@/database/user.modal"
 import Tag from "@/database/tag.model"
 
 import { connectToDatabase } from "./mongoose"
-import { CreateUserParams, DeleteUserParams, GetSavedQuestionsParams, ToggleSavedQuestionParams, UpdateUserParams,GetUserByIdParams } from "./shared.types"
+import { CreateUserParams, DeleteUserParams, GetSavedQuestionsParams, ToggleSavedQuestionParams, UpdateUserParams,GetUserByIdParams, GetUserStatsParam } from "./shared.types"
 import { revalidatePath } from "next/cache"
 import { FilterQuery } from "mongoose"
 import Question from "@/database/question.model"
@@ -173,6 +173,21 @@ export async function getUserInfo(params:GetUserByIdParams)
         }
     }
     
+    catch(error)
+    {
+        console.log(error);
+    }
+
+}
+export async function getUserQuestions(params:GetUserStatsParam) {
+    try{
+        connectToDatabase()
+        const {userId,page=1,pageSize} = params
+        const totalQuestions = await Question.countDocuments({author:userId})
+        const userQuestions = (await Question.find({author:userId}))
+        
+
+    }
     catch(error)
     {
         console.log(error);

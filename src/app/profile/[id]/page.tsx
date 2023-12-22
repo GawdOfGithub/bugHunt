@@ -11,14 +11,23 @@ import Stats from '../stats'
 
 type Props = {
 params:{
-    userId:string
+    id:string
 }
 }
 
 const Page = async({params}:Props) => {
+    if(!params.id)
+    {
+        return (
+            <div>
+                hello world
+            </div>
+        )
+    }
+    console.log(params);
     const {userId:clerkId} = auth()
 
-    const userInfo = await getUserInfo({userId:params.userId})
+    const userInfo = await getUserInfo({userId:params.id})
     console.log(userInfo);
   return (
     <>
@@ -34,7 +43,7 @@ const Page = async({params}:Props) => {
     </div>
     <div className='mt-3'>
         <h2 className='bold'>{userInfo?.user.name}</h2>
-        <p>@{userInfo?.user.userName}</p>
+        <p>@{userInfo?.user.username}</p>
         <div className='mt-5 flex flex-wrap items-center justify-start gap-5'>
         {userInfo?.user.location &&(
             <ProfileLink 

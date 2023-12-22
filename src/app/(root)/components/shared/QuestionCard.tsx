@@ -44,8 +44,8 @@ const QuestionCard = async({ _id, author, downvotes, title, tags, upvotes }: Pro
      <div className="flex flex-col">
  
        <div className="flex justify-between gap-5">
-     {/* <Link href={`QuestionDetail/${_id}`}> */}
-     <Link href={`profile/${userId}`}>
+      <Link href={`QuestionDetail/${_id}`}> 
+    
        <div className="font-extrabold text-3xl mb-5 text-black dark:text-white">{title}</div>
        </Link>
        <Votes

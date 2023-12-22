@@ -97,3 +97,14 @@ export interface getQuestionByTagIdParams{
 export interface GetUserByIdParams{
     userId:string
 }
+export interface DeleteQuestionParams{
+    questionId:string
+    path:string
+}
+export interface EditQuestParams {
+questionId:string
+title:string
+content:string
+tags:string[]
+path:string
+}

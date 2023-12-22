@@ -184,8 +184,12 @@ export async function getUserQuestions(params:GetUserStatsParam) {
         connectToDatabase()
         const {userId,page=1,pageSize} = params
         const totalQuestions = await Question.countDocuments({author:userId})
-        const userQuestions = (await Question.find({author:userId}))
-        
+        const userQuestions = await Question.find({author:userId})
+        .sort({views:-1,upvotes:-1})
+        .populate('tags ','_id,name')
+        .populate('author','_id clerkId name picture')
+
+        return{totalQuestions,questions:userQuestions}
 
     }
     catch(error)
@@ -193,4 +197,23 @@ export async function getUserQuestions(params:GetUserStatsParam) {
         console.log(error);
     }
 
+}
+export async function getUserAnswers(params:GetUserStatsParam)
+{
+    try
+    {
+        connectToDatabase()
+        const {userId,page=1} = params
+        const totalAnswers = await Answer.countDocuments({author:userId})
+        const userAnswer = await Answer.find({author:userId})
+        .sort({views:-1 ,upvotes:-1})
+        .populate('question','_id title')
+        .populate('author', '_id clerkId name picture')
+        return {totalAnswers,answers:userAnswer}
+
+    }
+    catch(error)
+    {
+        console.log(error);
+    }
 }

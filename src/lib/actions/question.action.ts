@@ -4,9 +4,9 @@ import { connectToDatabase } from "./mongoose";
 import Tag from "@/database/tag.model";
 import User from "@/database/user.modal";
 import Answer from "@/database/answer.model";
-import { GetQuestionParams,getQuestionById,QuestionVoteParams } from "./shared.types";
+import { GetQuestionParams,getQuestionById,QuestionVoteParams, DeleteQuestionParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
-import { truncate } from "fs/promises";
+import Interaction from "@/database/interaction.model";
 
 
 
@@ -190,3 +190,16 @@ export async function getSavedQuestionById({id}:getQuestionById)
     }
 
 }
+export async function deleteQuestion (params:DeleteQuestionParams) {
+  try {
+    connectToDatabase()
+    const {questionId,path} = params
+   await Question.deleteOne({_id:questionId})
+   await Answer.deleteMany({question:questionId})
+   await Interaction.deleteMany({question:questionId})
+   revalidatePath(path)
+  } catch (error) {
+    console.error(error);
+  }
+}
+//9 min 6 sec video 1

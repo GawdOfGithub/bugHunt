@@ -31,12 +31,12 @@ const Stats = ({totalQuestions,totalAnswers}: Props) => {
     <div className='mt-5 grid grid-cols-1 gap-5 xs:grid-cols-2 md:grid-cols-4'>
         <div className='flex flex-wrap items-center justify-evenly'>
        <div>
-        <p className='bold'>1</p>
+        <p className='bold'>{totalQuestions}</p>
         <p>Questions</p>
         
        </div>
        <div>
-        <p className='bold'>2</p>
+        <p className='bold'>{totalAnswers}</p>
         <p>Answers</p>
         
        </div>

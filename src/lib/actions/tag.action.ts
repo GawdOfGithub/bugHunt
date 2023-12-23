@@ -6,7 +6,7 @@ import Tag, { ITag } from "@/database/tag.model";
 import User from "@/database/user.modal";
 import { GetQuestionParams, getQuestionByTagIdParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
-
+import { FilterQuery } from "mongoose";
 export async function getAllQuestionsByTags({params}:any)
 {
 

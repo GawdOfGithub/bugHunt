@@ -11,7 +11,8 @@ export default authMiddleware({
     '/profile/:id',
     '/community',
     '/collections',
-    '/jobs'
+    '/jobs',
+    
 
   
   ],
@@ -28,6 +29,7 @@ export const config = {
     "/",
     "/(api|trpc)(.*)",
     "/QuestionDetail/:id", 
+    
   ],
 };
  

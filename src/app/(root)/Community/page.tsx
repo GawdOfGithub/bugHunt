@@ -5,12 +5,17 @@ import LocalSearchBar from '../components/shared/search/LocalSearchBar'
 import UserCard from '../components/shared/USerCard'
 import {auth} from '@clerk/nextjs'
 import { getAllUsers } from '@/lib/actions/user.action'
+import { useSearchParams } from 'next/navigation'
+import { SearchParamProps } from '@/lib/actions/shared.types'
+
 type Props = {}
 
-const Page = async(props: Props) => {
+const Page = async({searchParams}: SearchParamProps) => {
   try
   {
-    const users = await getAllUsers()
+    const users = await getAllUsers({
+      searchQuery:searchParams.q
+    })
     return (
       <>
       <div className='text-whit font-extrabold text-3xl '>All Users</div>

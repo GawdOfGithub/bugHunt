@@ -7,6 +7,8 @@ import Answer from "@/database/answer.model";
 import { GetQuestionParams,getQuestionById,QuestionVoteParams, DeleteQuestionParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import Interaction from "@/database/interaction.model";
+import { PathParamsContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime";
+import { FilterQuery } from "mongoose";
 
 
 
@@ -80,10 +82,18 @@ export async function createQuestion(params:any)
     }
 
 }
-export async function getQuestions() {
+export async function getQuestions(params:GetQuestionParams) {
     try{
         connectToDatabase() 
-        const questions = await Question.find({})
+        const {searchQuery} = params
+        const query:FilterQuery<typeof Question> ={}
+        if(searchQuery){
+            query.$or = [
+            {title:{$regex:new RegExp(searchQuery,"i")}},
+            {content:{$regex:new RegExp(searchQuery,"i")}}
+            ]
+        }
+        const questions = await Question.find(query)
         .populate({path:'tags',model:Tag})
         .populate({path:'author', model:User})
         return {questions}
@@ -203,3 +213,13 @@ export async function deleteQuestion (params:DeleteQuestionParams) {
   }
 }
 //9 min 6 sec video 1
+export async function getTopQuestions() {
+  try {
+    const topQuestions = await Question.find({})
+    .sort({views:-1,upvotes:-1})
+    .limit(10)
+ return topQuestions
+  } catch (error) {
+    console.error(error);
+  }
+}

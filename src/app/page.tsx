@@ -9,12 +9,15 @@ import FilterSmallScreen from './(root)/components/shared/FIlter/filterSmallScre
 import QuestionCard from './(root)/components/shared/QuestionCard'
 import { getQuestions } from '@/lib/actions/question.action'
 import { HomeFilterData } from '@/constants'
-type Props = {}
+import { SearchParamProps } from '@/lib/actions/shared.types'
 
-const page = async(props: Props) => {
+
+const page = async({searchParams}: SearchParamProps) => {
   try{
 
-  const result = await getQuestions()
+  const result = await getQuestions({
+    searchQuery:searchParams.q
+  })
 
 
   return (
@@ -28,7 +31,9 @@ const page = async(props: Props) => {
      <LocalSearchBar route ="/"imgSrc="/icons8-search.svg"iconPosition="left" otherClasses='none' placeholder='Search....'/>
        <Filter FilterData={HomeFilterData}/>
        <div className='mt-3'>
-       <FilterSmallScreen FilterData={HomeFilterData}/>
+       <FilterSmallScreen FilterData={HomeFilterData}
+       
+       />
        
    
        {result && result?.questions?.length>0 ? 

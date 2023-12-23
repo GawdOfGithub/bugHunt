@@ -28,6 +28,8 @@ export interface GetUserStatsParam{
     userId:string,
     page?:number,
     pageSize?:number,
+    searchQuery?:string
+    
 }
 export interface DeleteUserParams{
     clerkId:string;
@@ -108,3 +110,11 @@ content:string
 tags:string[]
 path:string
 }
+export interface SearchParamProps{
+    searchParams:{
+        q:string
+    }
+  }
+  export interface getAllUsersParams{
+    searchQuery:string
+  }

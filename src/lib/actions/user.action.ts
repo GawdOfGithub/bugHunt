@@ -3,7 +3,7 @@ import User from "@/database/user.modal"
 import Tag from "@/database/tag.model"
 
 import { connectToDatabase } from "./mongoose"
-import { CreateUserParams, DeleteUserParams, GetSavedQuestionsParams, ToggleSavedQuestionParams, UpdateUserParams,GetUserByIdParams, GetUserStatsParam } from "./shared.types"
+import { CreateUserParams, DeleteUserParams, GetSavedQuestionsParams, ToggleSavedQuestionParams, UpdateUserParams,GetUserByIdParams, GetUserStatsParam, SearchParamProps, getAllUsersParams } from "./shared.types"
 import { revalidatePath } from "next/cache"
 import { FilterQuery } from "mongoose"
 import Question from "@/database/question.model"
@@ -22,15 +22,23 @@ export default async function getUserById(params:any)
         console.log(error);
     }
 }
-export async function getAllUsers() {
+export async function getAllUsers({searchQuery}:getAllUsersParams) {
     try {
         connectToDatabase();
-        const users = await User.find({});
+        const query:FilterQuery<typeof User> = {}
+        if(searchQuery){
+            query.$or = [
+                {name:{$regex:new RegExp(searchQuery,"i")}},
+                {username:{$regex:new RegExp(searchQuery,"i")}},
+                 
+            ]
+        }
+        const users = await User.find(query);
         console.log(users);
         return users;
     } catch (error) {
         console.log(error);
-        throw error; // You might want to rethrow the error to handle it elsewhere
+        throw error;
     }
 }
 
@@ -207,6 +215,8 @@ export async function getUserAnswers(params:GetUserStatsParam)
     try
     {
         connectToDatabase()
+        const {searchQuery} = params
+       
         const {userId,page=1} = params
         const totalAnswers = await Answer.countDocuments({author:userId})
         const userAnswer = await Answer.find({author:userId})

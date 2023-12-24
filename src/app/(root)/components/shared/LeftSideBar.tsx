@@ -23,41 +23,40 @@ if (pathname === "Profile" && userId) {
  console.log(pathname);
   return (
     <>
-    <div className="font-extrabold min-h-screen max-w-[300px] flex flex-col gap-5 sticky left-0 top-0 dark:bg-black dark:text-white bg-white text-black shadow-light-300 dark:shadow-none max-sm:hidden">
+    <div className="font-extrabold min-h-screen max-w-[300px] flex flex-col gap-5 sticky left-0 top-0 dark:text-white bg-white text-gray-800 shadow-light-300 dark:shadow-none max-sm:hidden dark:bg-black">
       {Sidebar.map((item, index) => (
-       
         <div key={index}>
-          {index==0 && <div className='mt-8'></div>}
-          <Link   href={item.name === 'Profile' && userId ? `/profile/${userId}` : `${item.link}`}
-            className={`text-2xl ${pathname === item.link ?"bg-red-500":null} dark:hover:text-green-500 hover:text-red-500 ${pathname === item.name ? "bg-red-300" : ""}`}
-          
-            
+          {index === 0 && <div className="mt-8"></div>}
+          <Link
+            href={item.name === 'Profile' && userId ? `/profile/${userId}` : `${item.link}`}
+            className={`text-lg ${
+              pathname === item.link
+                ? 'bg-red-500 text-white'
+                : 'dark:hover:text-green-500 hover:text-red-500'
+            } ${pathname === item.name ? 'bg-red-300' : ''} py-3 px-5 rounded-md transition-all duration-300`}
           >
             {item.name}
           </Link>
-          {index < Sidebar.length - 1 && <div className="border-b border-blue-500 mb-5 min-w-full"></div>}
+          {index < Sidebar.length - 1 && <div className="border-b border-gray-300 my-2"></div>}
         </div>
-       
       ))}
-    
-    <SignedOut>
-         
-            <div className="flex flex-col w-full ">
-              <Link href="/sign-in">
-          <Button className="w-full px-24 py-5 mt-52 mb-5 ml-0 rounded-lg hover:bg-green-300" >
-           LogIn
-          </Button>
+
+      <SignedOut>
+        <div className="flex flex-col w-full">
+          <Link href="/sign-in">
+            <Button className="w-full px-6 py-3 mt-4 rounded-lg bg-green-500 hover:bg-green-600 text-white">
+              Log In
+            </Button>
           </Link>
           <Link href="/sign-up">
-          <Button className="w-full px-10 py-5  mb-5 rounded-lg hover:bg-green-300" >
-           Sign Up
-          </Button>
+            <Button className="w-full px-6 py-3 mt-2 rounded-lg border border-green-500 hover:bg-green-500 hover:text-white">
+              Sign Up
+            </Button>
           </Link>
-          </div>
-          
-           </SignedOut>
-           </div>
-    </>
+        </div>
+      </SignedOut>
+    </div>
+  </>
   );
 };
 export default LeftSideBar

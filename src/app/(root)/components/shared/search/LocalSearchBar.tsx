@@ -65,7 +65,7 @@ const LocalSearchBar = ({
       >
         {iconPosition === 'left' && (
           <Image
-            src={imgSrc}
+            src="/search.svg"
             alt="Search icon"
             width={24}
             height={24}
@@ -83,7 +83,7 @@ const LocalSearchBar = ({
 
         {iconPosition === 'right' && (
           <Image
-            src={imgSrc}
+            src="/search.svg"
             alt="Search icon"
             width={24}
             height={24}

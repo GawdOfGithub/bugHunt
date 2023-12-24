@@ -7,7 +7,7 @@ import LocalSearchBar from '../components/shared/search/LocalSearchBar'
 import { Button } from '../components/ui/button'
 import Filter from '../components/shared/FIlter/filter'
 import FilterSmallScreen from '../components/shared/FIlter/filterSmallScreen'
-
+import Pagination from '../components/shared/Pagination'
 import QuestionCard from '../components/shared/QuestionCard'
 import { getQuestions } from '@/lib/actions/question.action'
 import { HomeFilterData } from '@/constants'
@@ -66,9 +66,10 @@ const page = async({searchParams}:SearchParamProps) => {
       </div>
       </>
       }
-      
+      <Pagination/>
        </div>
     </div>
+    
   )
     }
     catch(error)

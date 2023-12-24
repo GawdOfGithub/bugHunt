@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Providers } from '@/contexts/Providers'
 import { Inter,Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import './prism.css'
@@ -28,11 +29,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+ 
     <ClerkProvider>
+    
      
     <html lang="en">
+   
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <Providers>
       <ThemeContextProvider>
+        
       <div>
         <Navbar/>
       </div>
@@ -41,16 +47,23 @@ export default function RootLayout({
         <LeftSideBar/>
       </div>
       <div className=''>
+      
       {children}
+      
       </div>
       <div>
         <RightSideBar/>
       </div>
       </div>
       </ThemeContextProvider>
+      </Providers>
       </body>
+      
     </html>
-   
+
+    
     </ClerkProvider>
+   
+   
   )
 }

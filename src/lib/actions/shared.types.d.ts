@@ -114,7 +114,7 @@ export interface SearchParamProps{
     searchParams:{
         q?:string
         filter?:string
-        paginate?:string
+        page?:number
     }
   }
   export interface getAllUsersParams{

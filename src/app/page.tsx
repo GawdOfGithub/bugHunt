@@ -10,6 +10,7 @@ import QuestionCard from './(root)/components/shared/QuestionCard'
 import { getQuestions } from '@/lib/actions/question.action'
 import { HomeFilterData } from '@/constants'
 import { SearchParamProps } from '@/lib/actions/shared.types'
+import Pagination from './(root)/components/shared/Pagination'
 
 
 const page = async({searchParams}: SearchParamProps) => {
@@ -17,11 +18,14 @@ const page = async({searchParams}: SearchParamProps) => {
 
   const result = await getQuestions({
     searchQuery:searchParams.q,
-    filter:searchParams.filter
+    filter:searchParams.filter,
+    page:searchParams.page
     
     
   })
-
+  const isNext = result?.isNext
+console.log("tumtum");
+console.log(isNext);
 
   return (
     
@@ -62,11 +66,16 @@ const page = async({searchParams}: SearchParamProps) => {
     
         NOthing to show
       </div>
+    
       </>
       }
       
        </div>
+       <div>
+        <Pagination totalPages={isNext}/>
+       </div>
     </div>
+    
   )
     }
     catch(error)

@@ -85,7 +85,9 @@ export async function createQuestion(params:any)
 export async function getQuestions(params:GetQuestionParams) {
     try{
         connectToDatabase() 
-        const {searchQuery,filter} = params
+        const {searchQuery,filter,page=1,pageSize=3} = params
+        const skipAmount = (page-1)* pageSize
+
         const query:FilterQuery<typeof Question> ={}
         if(searchQuery){
             query.$or = [
@@ -114,7 +116,12 @@ export async function getQuestions(params:GetQuestionParams) {
         .populate({path:'tags',model:Tag})
         .populate({path:'author', model:User})
         .sort(sortOptions)
-        return {questions}
+        .skip(skipAmount)
+        .limit(pageSize)
+        const totalQuestions = await Question.countDocuments(query)
+        const isNext = questions.length-1
+    
+        return {questions,isNext}
 
     }
     catch(error)

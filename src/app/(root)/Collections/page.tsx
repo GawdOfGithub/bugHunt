@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { UserButton } from '@clerk/nextjs'
-
+import { QuestionFilterData } from '@/constants'
 import LocalSearchBar from '../components/shared/search/LocalSearchBar'
 import { Button } from '../components/ui/button'
 import Filter from '../components/shared/FIlter/filter'
@@ -13,15 +13,18 @@ import { getQuestions } from '@/lib/actions/question.action'
 import { HomeFilterData } from '@/constants'
 import { getSavedQuestions } from '@/lib/actions/user.action'
 import {auth} from '@clerk/nextjs'
+import { SearchParamProps } from '@/lib/actions/shared.types'
 type Props = {}
 
-const page = async(props: Props) => {
+const page = async({searchParams}:SearchParamProps) => {
   const {userId} = auth()
   if(!userId) return null
   try{
 
   const result = await getSavedQuestions({
-    clerkId:userId
+    clerkId:userId,
+    searchQuery:searchParams.q,
+    filter:searchParams.filter
   })
 
 
@@ -33,9 +36,9 @@ const page = async(props: Props) => {
      
       </div>
      <LocalSearchBar route ="/"imgSrc="/icons8-search.svg"iconPosition="left" otherClasses='none' placeholder='Search....'/>
-       <Filter FilterData={HomeFilterData}/>
+       <Filter FilterData={QuestionFilterData}/>
        <div className='mt-3'>
-       <FilterSmallScreen FilterData={HomeFilterData}/>
+       <FilterSmallScreen FilterData={QuestionFilterData}/>
        
    
        {result && result?.questions?.length>0 ? 

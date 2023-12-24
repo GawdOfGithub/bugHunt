@@ -112,9 +112,12 @@ path:string
 }
 export interface SearchParamProps{
     searchParams:{
-        q:string
+        q?:string
+        filter?:string
+        paginate?:string
     }
   }
   export interface getAllUsersParams{
-    searchQuery:string
+    searchQuery?:string
+    filter?:string
   }

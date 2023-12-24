@@ -8,7 +8,7 @@ type Props = {
   FilterData: Array<{ name: string,value:string }>;
 };
 
-function Filter({ FilterData }: Props) {
+function CommunityFilter({ FilterData }: Props) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [active, setActive] = useState('');
@@ -52,4 +52,4 @@ function Filter({ FilterData }: Props) {
   );
 }
 
-export default Filter;
+export default CommunityFilter;

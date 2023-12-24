@@ -16,7 +16,10 @@ const page = async({searchParams}: SearchParamProps) => {
   try{
 
   const result = await getQuestions({
-    searchQuery:searchParams.q
+    searchQuery:searchParams.q,
+    filter:searchParams.filter
+    
+    
   })
 
 

@@ -11,7 +11,6 @@ export const  theme:themeType[] =
     {name:"🌙Dark Mode",value:"dark"},
     {name:"🌓System Mode",value:"system"},
 ]
-
 export const Sidebar:SideBarType[] =
 [
 
@@ -22,20 +21,9 @@ export const Sidebar:SideBarType[] =
   { name: "🔍 Find Jobs", link: "/Find Jobs" },
   { name: "🏷️ names", link: "/names" },
   { name: "❓ Ask a question", link: "/AskQuestion" },
-  // { name: "Login", link: "/" },
-  // { name: "SignUp", link: "/" },
+
 ]
-export const QuestionData:QuestionDataType[] = 
-[
-  {_id:1, question:"Best Practices for data fetching in next applications "},
-  {_id:2, question:"Async Await Function not working properly "},
-  {_id:3,question:"A quick brown fox jumps over the lazy dog"},
-  {_id:4,question:"Best Practices"},
-  {_id:5,question:"Best Practices"},
-  {_id:6,question:"Best Practices"},
-  {_id:7,question:"Best Practices"},
-  {_id:8,question:"Best Practices"},
-]
+
 export const TagData:TagDataType[] =  
 [
   
@@ -49,46 +37,26 @@ export const TagData:TagDataType[] =
 export const HomeFilterData:FilerDataType[] =  
 [
   
-    {name:"Newest"},
-    {name:"Recommended"},
-    {name:"Frequent"},
-    {name:"Unanswered"},
+    {name:"newest",value:"Newest"},
+    {name:"recommended",value:"recommended"},
+    {name:"frequent",value:"frequent"},
+    {name:"unanswered",value:"unanswered"},
    
 ]
 export const CommunityFilterData:FilerDataType[] =  
 [
   
-    {name:"New Users"},
-    {name:"Old users"},
-    {name:"Top contributors"},
+    {name:"New Users",value:"new"},
+    {name:"Old users",value:"old"},
+    {name:"Top contributors",value:"top"},
    
    
 ]
-export const tempQuestionData:tempQuestionDataType[] =  
+export const QuestionFilterData:FilerDataType[] = 
 [
-  
-   {
-  _id:1,
-    title:'Cascading in SQLAlchemy?',
-    downvotes:100,
-    tags:[
-      {_id:1,name:"python"},
-      {_id:2,name:"javascript"},
-      {_id:3,name:"typescript"},
-     
-      
-    ],
-    author:[
-      {
-      _id:1,
-      name:"John Doe",
-      picture:"/"
-      }
-    ],
-   upvotes:10,
-   views:100,
-  
-  //  createdAt: newDate('2021-09-01T12:00:00.000Z')
-  
-  }
+  {name:"Most recent",value:"most_recent"},
+  {name:"Oldest",value:"oldest"},
+  {name:"Most Voted",value:"most_voted"},
+  {name:"Most Viewed",value:"most_viewed"},
+  {name:"Most Answered",value:"most_answered"},
 ]

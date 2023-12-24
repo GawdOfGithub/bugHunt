@@ -85,7 +85,7 @@ export async function createQuestion(params:any)
 export async function getQuestions(params:GetQuestionParams) {
     try{
         connectToDatabase() 
-        const {searchQuery} = params
+        const {searchQuery,filter} = params
         const query:FilterQuery<typeof Question> ={}
         if(searchQuery){
             query.$or = [
@@ -93,9 +93,27 @@ export async function getQuestions(params:GetQuestionParams) {
             {content:{$regex:new RegExp(searchQuery,"i")}}
             ]
         }
+        let sortOptions = {}
+        switch(filter){
+            case "newest":
+                sortOptions = {createdAt:-1}
+                break;
+        
+        case "frequent":
+            sortOptions = {views:-1}
+            break;
+            case "recommended":
+                sortOptions = {views:-1}
+                break;
+            case "unanswered":
+                query.answers = {$size:-1}
+                break
+        }
+
         const questions = await Question.find(query)
         .populate({path:'tags',model:Tag})
         .populate({path:'author', model:User})
+        .sort(sortOptions)
         return {questions}
 
     }

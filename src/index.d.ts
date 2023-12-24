@@ -29,6 +29,7 @@ type tag =
 }
 export type FilerDataType = {
    name:string
+   value:string
 }
 export type tempQuestionDataType = {
     _id:number,

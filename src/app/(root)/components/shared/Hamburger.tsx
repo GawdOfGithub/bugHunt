@@ -29,7 +29,7 @@ const pathname = usePathname()
     console.log(pathname);
     return (
       <>
-      <div className="max:sm-hidden">
+      <div className="sm-hidden">
         <Sheet>
           <SheetTrigger className="text-2xl cursor-pointer">☰</SheetTrigger>
           <SheetContent side="left" className="bg-gray-800 text-white">

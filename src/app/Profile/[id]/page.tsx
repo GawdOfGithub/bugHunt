@@ -73,8 +73,8 @@ const Page = async ({ params }: Props) => {
         </div>
 
         <Stats
-          totalQuestions={userInfo?.totalQuestions}
-          totalAnswers={userInfo?.totalAnswers}
+         totalQuestions={userInfo?.totalQuestions ?? 0}
+totalAnswers={userInfo?.totalAnswers ?? 0}
         />
 
         <div className='mt-10'>

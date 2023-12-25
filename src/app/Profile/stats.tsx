@@ -5,7 +5,7 @@ import Image from 'next/image';
 type Props = {
   totalQuestions: number;
   totalAnswers: number;
-  userId: string;
+  
 };
 
 type StatsCardProps = {
@@ -32,7 +32,7 @@ const StatsCard = ({ emojiOrImage, value, title }: StatsCardProps) => {
   );
 };
 
-const Stats = ({ totalQuestions, totalAnswers, userId }: Props) => {
+const Stats = ({ totalQuestions, totalAnswers }: Props) => {
   return (
     <div className='mt-10'>
       <h4 className='text-2xl font-semibold mb-3'>Stats</h4>

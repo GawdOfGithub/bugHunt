@@ -18,8 +18,7 @@ export const Sidebar:SideBarType[] =
     { name: "Profile", link: "/" },
   { name: "📚 Collections", link: "/Collections" },
   { name: "👥 Community", link: "/Community" },
-  { name: "🔍 Find Jobs", link: "/Find Jobs" },
-  { name: "🏷️ names", link: "/names" },
+  
   { name: "❓ Ask a question", link: "/AskQuestion" },
 
 ]

@@ -9,6 +9,7 @@ import { getQuestions } from '@/lib/actions/question.action';
 import { HomeFilterData } from '@/constants';
 import { SearchParamProps } from '@/lib/actions/shared.types';
 import Pagination from './(root)/components/shared/Pagination';
+import Hamburger from './(root)/components/shared/Hamburger';
 import Link from 'next/link';
 import Loading from '@/app/Loading'
 const Page = async ({ searchParams }: SearchParamProps) => {

@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 import { viewQuestion } from '@/lib/actions/interaction.action';
 import { toast } from "sonner"
 import { clerkClient } from '@clerk/nextjs';
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
 type Props = {
   type: string,
   itemId: string,
@@ -24,10 +24,11 @@ type Props = {
   isSaved: boolean,
   upvotes: number,
   downvotes: number,
+  views:number
   answerId?:string
 };
 
-const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, itemId, userId }: Props) => {
+const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, itemId, userId,views }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -135,6 +136,10 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
       (<div className="flex-col ">
         {isSaved ? <button onClick={handleSave}><StarIcon /></button> : <button onClick={handleSave}><StarOutlineIcon /></button>}
       </div>)}
+      <div className="flex flex-col items-center justify-center">
+        <div>{views}</div>
+        <div><VisibilityIcon/></div>
+      </div>
     </div>
   );
 };

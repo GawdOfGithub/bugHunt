@@ -27,7 +27,7 @@ type Props = {
   views: number;
 };
 
-const QuestionCard = async ({ _id, author, downvotes, title, tags, upvotes }: Props) => {
+const QuestionCard = async ({ _id, author, downvotes, title, tags, upvotes,views }: Props) => {
   try {
     const { userId } = auth();
     if (!userId) redirect('/sign-in');
@@ -49,6 +49,7 @@ const QuestionCard = async ({ _id, author, downvotes, title, tags, upvotes }: Pr
             hasUpvoted={upvotes.includes(mongoUser._id)}
             hasDownVoted={downvotes.includes(mongoUser._id)}
             isSaved={mongoUser?.saved.includes(_id)}
+            views={views}
           />
         </div>
         <div className="flex gap-2 mb-4">

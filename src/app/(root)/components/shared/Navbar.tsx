@@ -15,9 +15,10 @@ const Navbar = (props: Props) => {
   return (
     <>
       <nav className="dark:bg-black dark:text-white bg-white text-gray-300 p-4 flex items-center justify-between font-bold shadow-md">
-        <span className="text-2xl font-bold text-white">OverFlow</span>
+        <span className="text-2xl font-bold text-black dark:text-white">OverFlow</span>
+        <Hamburger/>
 
-        <div className="flex items-center rounded-md border ml-4">
+        <div className="flex items-center rounded-md border ml-4 max-sm:hidden">
           <GlobalSearchBar
             route="/"
             imgSrc="/search.svg"

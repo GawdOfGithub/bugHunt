@@ -1,7 +1,7 @@
 import getUserById, { getUserInfo } from '@/lib/actions/user.action'
 import React from 'react'
 import Image from 'next/image'
-import { SignedIn, auth } from '@clerk/nextjs'
+import { RedirectToUserProfile, SignedIn, auth } from '@clerk/nextjs'
 import { Button } from '@/app/(root)/components/ui/button'
 import Link from 'next/link'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -10,6 +10,7 @@ import ProfileLink from '@/app/(root)/components/shared/ProfileLink'
 import Stats from '../stats'
 import QuestionTab from '@/app/(root)/components/shared/QuestionTab'
 import AnswerTab from '@/app/(root)/components/shared/AnswerTab'
+import { UserButton } from '@clerk/nextjs'
 
 type Props = {
   params: {
@@ -58,10 +59,12 @@ const Page = async ({ params }: Props) => {
             <div className='flex justify-end mt-3'>
               <SignedIn>
                 {clerkId === userInfo?.user.clerkId && (
-                  <Link href="/profile/image">
-                    <Button className='btn-secondary min-h-[46px] min-w-[175px] px-4 py-3'>
-                      Edit Profile
+                  <Link href="/Collections">
+                    {/* <Link href="/profile/edit"> */}
+                    <Button className='btn-secondary min-h-[46px] min-w-[175px] px-4 py-3 '>
+                     Collections
                     </Button>
+                   
                   </Link>
                 )}
               </SignedIn>

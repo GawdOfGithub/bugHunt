@@ -9,6 +9,7 @@ import { useSearchParams } from 'next/navigation';
 import { SearchParamProps } from '@/lib/actions/shared.types';
 import CommunityFilter from '../components/shared/FIlter/communityFilter';
 
+
 type Props = {};
 
 const Page = async ({ searchParams }: SearchParamProps) => {
@@ -30,7 +31,7 @@ const Page = async ({ searchParams }: SearchParamProps) => {
 
           {/* Local Search Bar */}
           <LocalSearchBar
-            route='community'
+            route='/Community'
             iconPosition='left'
             imgSrc=''
             placeholder='Search Amazing minds here'

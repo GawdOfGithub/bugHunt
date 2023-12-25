@@ -12,6 +12,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { toggleSavedQuestion } from '@/lib/actions/user.action';
 import { useEffect } from 'react';
 import { viewQuestion } from '@/lib/actions/interaction.action';
+import { toast } from "sonner"
+import { clerkClient } from '@clerk/nextjs';
 
 type Props = {
   type: string,
@@ -39,6 +41,10 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
           userId: JSON.parse(userId),
           path: pathname,
         });
+        return   toast(`Upvote ${!hasUpvoted?'added successfully':'removed successfully'}`, {
+          description: "Thanks for the feedback",
+         
+        })
       
       } else if (type === "answer") {
         await upvoteAnswer({
@@ -48,6 +54,10 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
           userId: JSON.parse(userId),
           path: pathname,
         });
+        return   toast(`Upvote ${!hasUpvoted?'added successfully':'removed successfully'}`, {
+          description: "Thanks for the feedback",
+         
+        })
       
       }
     } catch (error) {
@@ -65,6 +75,10 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
           userId: JSON.parse(userId),
           path: pathname,
         });
+        return   toast(`Downvote ${!hasUpvoted?'added successfully':'removed successfully'}`, {
+          description: "Thanks for the feedback",
+         
+        })
       } else if (type === "answer") {
         await downvoteAnswer({
           hasDownVoted: hasDownVoted,
@@ -73,6 +87,11 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
           userId: JSON.parse(userId),
           path: pathname,
         });
+        return   toast(`Downvote ${!hasUpvoted?'added successfully':'removed successfully'}`, {
+          description: "Thanks for the feedback",
+         
+        })
+        
       }
     } catch (error) {
       console.log(error);
@@ -84,6 +103,10 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
       userId:JSON.parse(userId),
       questionId:JSON.parse(itemId),
       path:pathname
+    })
+    return   toast(`Your question was  ${!isSaved?'added to the collection page':' removed from the collection page'}`, {
+     
+     
     })
   };
 

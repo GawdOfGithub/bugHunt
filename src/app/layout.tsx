@@ -8,6 +8,7 @@ import ThemeContextProvider from '@/contexts/ThemeContext'
 import Navbar from '@/app/(root)/components/shared/Navbar'
 import RightSideBar from './(root)/components/shared/RightSideBar'
 import LeftSideBar from './(root)/components/shared/LeftSideBar'
+import { Toaster } from 'sonner'
 const inter = Inter({ subsets: ['latin'] ,
 weight: [ '100', '200', '300', '400', '500', '600', '700', '800', '900' ],
 variable:'--font-inter'
@@ -19,8 +20,12 @@ variable:'--font-inter'
 })
 
 export const metadata: Metadata = {
-  title: 'OverFlow',
-  description: 'Clear your dev doubts today',
+  title: 'Bug Hunter',
+  description: 'Let us hunt the bugs today',
+  icons:
+  {
+    icon:"/medal.svg"
+  }
 }
 
 export default function RootLayout({
@@ -38,7 +43,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <Providers>
       <ThemeContextProvider>
-        
+        <Toaster/>
       <div>
         <Navbar/>
       </div>

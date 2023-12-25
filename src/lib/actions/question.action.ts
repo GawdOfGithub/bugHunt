@@ -93,7 +93,7 @@ export async function createQuestion(params:any)
 export async function getQuestions(params:GetQuestionParams) {
     try{
         connectToDatabase() 
-        const {searchQuery,filter,page=1,pageSize=3} = params
+        const {searchQuery,filter,page=1,pageSize=5} = params
         const skipAmount = (page-1)* pageSize
 
         const query:FilterQuery<typeof Question> ={}
@@ -127,7 +127,7 @@ export async function getQuestions(params:GetQuestionParams) {
         .skip(skipAmount)
         .limit(pageSize)
         const totalQuestions = await Question.countDocuments(query)
-        const isNext = questions.length-1
+        const isNext = totalQuestions/5 +1
     
         return {questions,isNext}
 

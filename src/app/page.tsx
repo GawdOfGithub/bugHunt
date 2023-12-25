@@ -9,8 +9,14 @@ import { getQuestions } from '@/lib/actions/question.action';
 import { HomeFilterData } from '@/constants';
 import { SearchParamProps } from '@/lib/actions/shared.types';
 import Pagination from './(root)/components/shared/Pagination';
-
+import Link from 'next/link';
+import Loading from '@/app/Loading'
 const Page = async ({ searchParams }: SearchParamProps) => {
+  const isLoading = false
+  if(isLoading)
+  {
+    return <Loading/>
+  }
   try {
     const result = await getQuestions({
       searchQuery: searchParams.q,
@@ -25,9 +31,11 @@ const Page = async ({ searchParams }: SearchParamProps) => {
     return (
       <div className='z-50 text-white mt-12'>
         <div className='flex flex-row justify-between gap-20 max-sm:flex-col max-sm:gap-[3rem]'>
+          <Link href="/AskQuestion">
           <Button className='primary gradient bg-yellow-600 dark:text-white max-sm:w-32 ml-40'>
             Ask A Question
           </Button>
+          </Link>
           <h1 className='font-extrabold text-4xl text-black dark:text-white mb-5'>
             All Questions
           </h1>

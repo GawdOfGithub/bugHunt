@@ -6,6 +6,7 @@ import { auth } from '@clerk/nextjs';
 import getUserById from '@/lib/actions/user.action';
 import { redirect } from 'next/navigation';
 import Image from 'next/image';
+
 type TagType = {
   _id?: number;
   name?: string;
@@ -35,8 +36,9 @@ const QuestionCard = async ({ _id, author, downvotes, title, tags, upvotes,views
     const mongoUser = await getUserById({ userId });
 
     return (
-      <div className="flex flex-col bg-white dark:bg-black text-black dark:text-white p-6 rounded-md shadow-md">
-        <div className="flex justify-between items-center mb-5">
+      <div className="flex flex-col  text-black dark:text-white p-6 rounded-md shadow-md ">
+        <div className="flex justify-between items-center mb-5 ">
+          
           <Link href={`QuestionDetail/${_id}`}>
             <h1 className="font-extrabold text-3xl cursor-pointer">{title}</h1>
           </Link>

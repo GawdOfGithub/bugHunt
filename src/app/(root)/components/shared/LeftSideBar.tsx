@@ -28,12 +28,12 @@ if (pathname === "Profile" && userId) {
         <div key={index}>
           {index === 0 && <div className="mt-8"></div>}
           <Link
-            href={item.name === 'Profile' && userId ? `/profile/${userId}` : `${item.link}`}
+            href={item.link === '/Profile' && userId ? `/Profile/${userId}` : `${item.link}`}
             className={`text-lg ${
               pathname === item.link
                 ? 'bg-red-500 text-white'
                 : 'dark:hover:text-green-500 hover:text-red-500'
-            } ${pathname === item.name ? 'bg-red-300' : ''} py-3 px-5 rounded-md transition-all duration-300`}
+            } ${pathname.includes(item.link) ? 'bg-red-300' : ''} py-3 px-5 rounded-md transition-all duration-300`}
           >
             {item.name}
           </Link>

@@ -61,7 +61,7 @@ type Props = {
   }[];
 };
 
-const AnswerCard = async ({ _id, author, downvotes, title, tags, upvotes, answers }: Props) => {
+const AnswerCard = async ({ _id, author, downvotes, title, tags, upvotes, answers,views}: Props) => {
   try {
     console.log(`This is coming from here${answers[0]}`);
     const { userId } = auth();
@@ -83,6 +83,7 @@ const AnswerCard = async ({ _id, author, downvotes, title, tags, upvotes, answer
             hasUpvoted={upvotes.includes(mongoUser._id)}
             hasDownVoted={downvotes.includes(mongoUser._id)}
             isSaved={mongoUser?.saved.includes(_id)}
+            views ={views}
           />
         </div>
         <div className="flex gap-2 mb-4">
@@ -121,6 +122,7 @@ const AnswerCard = async ({ _id, author, downvotes, title, tags, upvotes, answer
                 hasUpvoted={item.upvotes.includes(mongoUser._id)}
                 hasDownVoted={item.downvotes.includes(mongoUser._id)}
                 isSaved={mongoUser?.saved.includes(_id)}
+                views={item.views}
               />
             </div>
           ))}

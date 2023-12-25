@@ -14,8 +14,8 @@ export const  theme:themeType[] =
 export const Sidebar:SideBarType[] =
 [
 
-    { name: "🏠 Home", link: "/" },
-    { name: "Profile", link: "/" },
+    { name: "🏠 Home", link: "/Home" },
+    { name: "Profile", link: "/Profile" },
   { name: "📚 Collections", link: "/Collections" },
   { name: "👥 Community", link: "/Community" },
   

@@ -1,3 +1,4 @@
+'use client'
 import { SignedIn, UserButton } from '@clerk/nextjs';
 import React from 'react';
 import Theme from './Theme';
@@ -16,7 +17,9 @@ const Navbar = (props: Props) => {
     <>
       <nav className="dark:bg-black dark:text-white bg-white text-gray-300 p-4 flex items-center justify-between font-bold shadow-md">
         <span className="text-2xl font-bold text-black dark:text-white">OverFlow</span>
+        <div className='max-sm:hidden'>
         <Hamburger/>
+        </div>
 
         <div className="flex items-center rounded-md border ml-4 max-sm:hidden">
           <GlobalSearchBar

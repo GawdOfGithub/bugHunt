@@ -23,13 +23,13 @@ import {useAuth} from '@clerk/nextjs'
     
     const [isOpen, setIsOpen] = useState(false);
 const pathname = usePathname()
-    useEffect(() => {
-      setIsOpen(false);
-    }, [pathname]);
+  
     
     
     console.log(pathname);
     return (
+      <>
+      <div className="max:sm-hidden">
         <Sheet>
           <SheetTrigger className="text-2xl cursor-pointer">☰</SheetTrigger>
           <SheetContent side="left" className="bg-gray-800 text-white">
@@ -78,6 +78,8 @@ const pathname = usePathname()
           </SignedOut>
         </SheetContent>
       </Sheet>
+      </div>
+      </>
       
     )
   }

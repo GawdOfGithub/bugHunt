@@ -137,8 +137,9 @@ const Votes = ({ type, hasUpvoted, hasDownVoted, isSaved, upvotes, downvotes, it
         {isSaved ? <button onClick={handleSave}><StarIcon /></button> : <button onClick={handleSave}><StarOutlineIcon /></button>}
       </div>)}
       <div className="flex flex-col items-center justify-center">
-        <div>{views}</div>
+        
         <div><VisibilityIcon/></div>
+        <div>{views}</div>
       </div>
     </div>
   );

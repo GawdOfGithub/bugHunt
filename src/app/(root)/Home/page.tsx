@@ -1,15 +1,17 @@
 import React from 'react';
 import { UserButton } from '@clerk/nextjs';
-import LocalSearchBar from './(root)/components/shared/search/LocalSearchBar';
-import { Button } from './(root)/components/ui/button';
-import Filter from './(root)/components/shared/FIlter/filter';
-import FilterSmallScreen from './(root)/components/shared/FIlter/filterSmallScreen';
-import QuestionCard from './(root)/components/shared/QuestionCard';
+
 import { getQuestions } from '@/lib/actions/question.action';
 import { HomeFilterData } from '@/constants';
 import { SearchParamProps } from '@/lib/actions/shared.types';
-import Pagination from './(root)/components/shared/Pagination';
-import Hamburger from './(root)/components/shared/Hamburger';
+
+import LocalSearchBar from '../components/shared/search/LocalSearchBar';
+import QuestionCard from '../components/shared/QuestionCard';
+import { Button } from '../components/ui/button';
+import Filter from '../components/shared/FIlter/filter';
+import FilterSmallScreen from '../components/shared/FIlter/filterSmallScreen';
+import Pagination from '../components/shared/Pagination';
+import Hamburger from '../components/shared/Hamburger';
 import Link from 'next/link';
 import Loading from '@/app/Loading'
 const Page = async ({ searchParams }: SearchParamProps) => {
@@ -26,8 +28,7 @@ const Page = async ({ searchParams }: SearchParamProps) => {
     });
 
     const isNext = result?.isNext;
-    console.log("tumtum");
-    console.log(isNext);
+  
 
     return (
       <div className='z-50 text-white mt-12'>

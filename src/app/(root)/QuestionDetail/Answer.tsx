@@ -12,6 +12,7 @@ import { auth } from '@clerk/nextjs';
 import { useState } from 'react';
 import { createAnswer } from '@/lib/actions/answer.action';
 
+
 import {
   Form,
   FormControl,
@@ -30,7 +31,7 @@ type Props = {
   question: string;
 };
 
-const Test = ({ mongoUser, question }: Props) => {
+const Answer = ({ mongoUser, question }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
   const route = useRouter();
@@ -62,16 +63,15 @@ const Test = ({ mongoUser, question }: Props) => {
   }
 
   return (
-    <>
-    
+    <div className="mx-auto max-w-2xl p-6 bg-white dark:bg-black rounded-md shadow-md mt-8">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col items-center justify-center"
+          className="flex flex-col items-center justify-center space-y-8"
         >
-          <div className="mb-12">
-            <FormLabel className="text-black text-5xl font-extrabold dark:text-yellow-500 sm:ml-12 mb-4">
-              Please provide a detailed answer... 🚀
+          <div className="mb-12 text-center">
+            <FormLabel className="text-3xl font-bold dark:text-yellow-500">
+              Provide a Detailed Answer 🚀
             </FormLabel>
             <FormDescription className="text-gray-600">
               Be as specific as possible
@@ -113,20 +113,18 @@ const Test = ({ mongoUser, question }: Props) => {
 
           <div className="mt-6">
             <Button type="submit" disabled={isSubmitting}>
-              Add an answer
+              Add an Answer
             </Button>
           </div>
-          <div className="mt-4 ">
+          <div className="mt-4 text-center">
             <Link href="/QnA">
-          <Button className='bg-red-600' type="button">Check solutions by others</Button>
-          </Link>
-        </div>
+            
+            </Link>
+          </div>
         </form>
-
-       
       </Form>
-    </>
+    </div>
   );
 };
 
-export default Test;
+export default Answer;

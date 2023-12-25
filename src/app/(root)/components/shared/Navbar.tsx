@@ -1,52 +1,44 @@
-'use client'
-import { SignedIn, UserButton } from '@clerk/nextjs'
-import React from 'react'
-import Theme from './Theme'
-import { Button } from '../ui/button'
-import Hamburger from './Hamburger'
+import { SignedIn, UserButton } from '@clerk/nextjs';
+import React from 'react';
+import Theme from './Theme';
+import { Button } from '../ui/button';
+import Hamburger from './Hamburger';
+import GlobalSearchBar from './search/GlobalSearchBar';
 
-import Image from 'next/image'
+import Image from 'next/image';
 
-import RightSideBar from './RightSideBar'
-type Props = {}
+import RightSideBar from './RightSideBar';
+
+type Props = {};
 
 const Navbar = (props: Props) => {
-
-    
   return (
     <>
-     
-      <nav className='dark:bg-black dark:text-white bg-gray-200 p-4 flex items-center justify-between font-bold '>
-       
-        <span className="font-bold">OverFlow</span>
-        <div className='flex  rounded-md border focus:outline-none focus:ring focus:border-blue-300 dark:bg-gray-800'>
-          <Image
-          src="/icons8-search.svg"
-          alt ="searchbar image"
-          height={10}
-          width={10}
+      <nav className="dark:bg-black dark:text-white bg-white text-gray-300 p-4 flex items-center justify-between font-bold shadow-md">
+        <span className="text-2xl font-bold text-white">OverFlow</span>
+
+        <div className="flex items-center rounded-md border ml-4">
+          <GlobalSearchBar
+            route="/"
+            imgSrc="/search.svg"
+            iconPosition="left"
+            otherClasses="none"
+            placeholder="Search anything"
           />
-        <input
-          type="search"
-          className=" rounded-md border focus:outline-none focus:ring focus:border-blue-300 dark:bg-gray-800 max-sm:hidden"
-          placeholder="Search globally"
-        />
         </div>
-        <Theme />
-        <SignedIn>
-          <UserButton afterSignOutUrl='/' />
-        </SignedIn>
-       
-        
+
+        <div className="flex items-center space-x-4">
+          <Theme />
+
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
+        </div>
       </nav>
-      
-      <div className=''>
-   
-      
-   
-      </div>
+
+      <div className=""></div>
     </>
   );
-}
+};
 
-export default Navbar
+export default Navbar;

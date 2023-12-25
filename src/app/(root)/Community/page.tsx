@@ -1,28 +1,26 @@
-import React from 'react'
-import FilterSmallScreen from '../components/shared/FIlter/filterSmallScreen'
-import { CommunityFilterData } from '@/constants'
-import LocalSearchBar from '../components/shared/search/LocalSearchBar'
-import UserCard from '../components/shared/USerCard'
-import {auth} from '@clerk/nextjs'
-import { getAllUsers } from '@/lib/actions/user.action'
-import { useSearchParams } from 'next/navigation'
-import { SearchParamProps } from '@/lib/actions/shared.types'
-import CommunityFilter from '../components/shared/FIlter/communityFilter'
+import React from 'react';
+import FilterSmallScreen from '../components/shared/FIlter/filterSmallScreen';
+import { CommunityFilterData } from '@/constants';
+import LocalSearchBar from '../components/shared/search/LocalSearchBar';
+import UserCard from '../components/shared/USerCard';
+import { auth } from '@clerk/nextjs';
+import { getAllUsers } from '@/lib/actions/user.action';
+import { useSearchParams } from 'next/navigation';
+import { SearchParamProps } from '@/lib/actions/shared.types';
+import CommunityFilter from '../components/shared/FIlter/communityFilter';
 
-
-type Props = {}
+type Props = {};
 
 const Page = async ({ searchParams }: SearchParamProps) => {
   try {
     const users = await getAllUsers({
       searchQuery: searchParams.q,
-      filter:searchParams.filter
-      
+      filter: searchParams.filter,
     });
 
     return (
       <>
-        <div className='text-white font-extrabold text-3xl mb-6'>
+        <div className='text-black dark:text-white font-extrabold text-3xl mb-6'>
           All Users
         </div>
 

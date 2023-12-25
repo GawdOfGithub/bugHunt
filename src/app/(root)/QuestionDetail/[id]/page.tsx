@@ -4,9 +4,8 @@ import {redirect} from 'next/navigation'
 import  getUserById  from '@/lib/actions/user.action';
 import { getQuestionById } from '@/lib/actions/question.action';
 import AnswerCard from './AnswerCard';
-import Qna from './qna';
-import Answer from './Answer';
-import Test from '../Test';
+
+import Answer from '../Answer';
 
 import { Avatar ,
   AvatarFallback,
@@ -25,21 +24,14 @@ const  page =async ({params}:Props) => {
 const {userId} = auth()
    if(!userId) redirect('/sign-in')
    const {_id, author, downvotes, title, tags, upvotes,views,answers} = await getQuestionById({id})
-  
-  
- console.log(answers);
-
    const mongoUser = await getUserById({userId})
-  // console.log(mongoUser);
-   
-
-
-  
   return (
-    <div>
-      {/* <Answer mongoUser={mongoUser ? JSON.stringify(mongoUser._id) : ''} question={question} /> */}
-      {/* <Test mongoUser={mongoUser} question={question}/> */}
-     <Test question={JSON.stringify(_id)} mongoUser={JSON.stringify(mongoUser._id)}/>
+    <div className='flex flex-col gap-5'>    
+     <Answer question={JSON.stringify(_id)} mongoUser={JSON.stringify(mongoUser._id)}/>
+     
+     <p className='text-white bg-red-600 p-2 rounded-md cursor-pointer'>
+                Solutions by Other Bug Hunters
+              </p>
      <AnswerCard
   {...{_id, author, downvotes, title, tags, upvotes,views,answers  }}
 />

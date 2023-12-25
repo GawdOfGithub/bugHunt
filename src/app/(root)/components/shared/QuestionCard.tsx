@@ -2,9 +2,10 @@ import React from 'react';
 import { Badge } from '../ui/badge';
 import Link from 'next/link';
 import Votes from './Votes';
-import {auth} from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs';
 import getUserById from '@/lib/actions/user.action';
 import { redirect } from 'next/navigation';
+import Image from 'next/image';
 type TagType = {
   _id?: number;
   name?: string;
@@ -26,69 +27,53 @@ type Props = {
   views: number;
 };
 
-const QuestionCard = async({ _id, author, downvotes, title, tags, upvotes }: Props) => {
-  
-  try
-  {
-    const {userId} = auth()
-  if(!userId)  redirect('/sign-in')
+const QuestionCard = async ({ _id, author, downvotes, title, tags, upvotes }: Props) => {
+  try {
+    const { userId } = auth();
+    if (!userId) redirect('/sign-in');
 
+    const mongoUser = await getUserById({ userId });
 
-    console.log(userId);
-
-   const mongoUser = await getUserById({userId})
-   return (
-    <>
-    
-    
-     <div className="flex flex-col">
- 
-       <div className="flex justify-between gap-5">
-      <Link href={`QuestionDetail/${_id}`}> 
-    
-       <div className="font-extrabold text-3xl mb-5 text-black dark:text-white">{title}</div>
-       </Link>
-       <Votes
-       type ="question"
-        upvotes={upvotes.length} 
-        downvotes={downvotes.length} 
-        itemId={JSON.stringify(_id)}
-        userId={JSON.stringify(mongoUser._id)}
-        hasUpvoted={upvotes.includes(mongoUser._id)}
-        hasDownVoted={downvotes.includes(mongoUser._id)}
-        isSaved={mongoUser?.saved.includes(_id)}
-
-        />
-       </div>
-       <div className="flex">
-         {tags.map((item) => (
-           <Badge key={item._id}>{item.name}</Badge>
-         ))}
-       </div>
-       <div className="flex gap-10">
-         <div key={author._id} className="flex gap-52 mt-10">
-           
-           <h2 className="text-black dark:text-white">{author.name}</h2>
-           
-           
-         </div>
-       </div>
-     </div>
-     </>
-   );
-         }
-
-         
-   
-
-  
-  catch(error)
-  {
-    console.log(error);
+    return (
+      <div className="flex flex-col bg-white dark:bg-black text-black dark:text-white p-6 rounded-md shadow-md">
+        <div className="flex justify-between items-center mb-5">
+          <Link href={`QuestionDetail/${_id}`}>
+            <h1 className="font-extrabold text-3xl cursor-pointer">{title}</h1>
+          </Link>
+          <Votes
+            type="question"
+            upvotes={upvotes.length}
+            downvotes={downvotes.length}
+            itemId={JSON.stringify(_id)}
+            userId={JSON.stringify(mongoUser._id)}
+            hasUpvoted={upvotes.includes(mongoUser._id)}
+            hasDownVoted={downvotes.includes(mongoUser._id)}
+            isSaved={mongoUser?.saved.includes(_id)}
+          />
+        </div>
+        <div className="flex gap-2 mb-4">
+          {tags.map((item) => (
+            <Badge key={item._id}>{item.name}</Badge>
+          ))}
+        </div>
+        <div className="flex items-center gap-3">
+          <Image
+            src={author.picture || '/default-avatar.png'}
+           height={30}
+           width={30}
+            alt="Author's Profile Picture"
+            className="w-8 h-8 rounded-full object-cover"
+          />
+          <div className="flex flex-col">
+            <h2 className="text-lg font-bold">{author.name}</h2>
+            <span className="text-gray-500">{new Date().toLocaleDateString()}</span>
+          </div>
+        </div>
+      </div>
+    );
+  } catch (error) {
+    console.error(error);
   }
-
-
- 
 };
 
 export default QuestionCard;

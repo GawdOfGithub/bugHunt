@@ -1,10 +1,12 @@
-'use client'
+"use client"
 import React from 'react';
 import Image from 'next/image';
 import { Input } from '../../ui/input';
-import {usePathname,useRouter,useSearchParams } from 'next/navigation';
-import { useState,useEffect } from 'react';
-import { formUrl,removeKeysFromQuery } from '@/lib/utils';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { formUrl, removeKeysFromQuery } from '@/lib/utils';
+import { useTheme } from '@/contexts/ThemeContext';
+
 type Props = {
   route: string;
   iconPosition: string;
@@ -20,73 +22,68 @@ const LocalSearchBar = ({
   placeholder,
   otherClasses,
 }: Props) => {
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const query = searchParams.get('q')
+  const { mode } = useTheme();
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const query = searchParams.get('q');
   const [search, setSearch] = useState(query || '');
-  useEffect(()=>
-  {
-    const delayDebounceFn = setTimeout(()=>
-    {
-      if(search)
-      {
+
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (search) {
         const newUrl = formUrl({
-          params:searchParams.toString(),
-          key:'q',
-          value:search
-        })
-        router.push(newUrl, {scroll:false})
-      }
-      else
-      {
-        if(pathname===route){
+          params: searchParams.toString(),
+          key: 'q',
+          value: search,
+        });
+        router.push(newUrl, { scroll: false });
+      } else {
+        if (pathname === route) {
           const newUrl = removeKeysFromQuery({
-            params:searchParams.toString(),
-            keysToRemove:['q']
-
-          })
-          router.push(newUrl,{scroll:false})
-
+            params: searchParams.toString(),
+            keysToRemove: ['q'],
+          });
+          router.push(newUrl, { scroll: false });
         }
-
       }
+    }, 200);
 
-    },200)
-    return ()=> clearTimeout(delayDebounceFn)
-
-  },[search,route,pathname,router,searchParams,query])
-  
+    return () => clearTimeout(delayDebounceFn);
+  }, [search, route, pathname, router, searchParams, query]);
 
   return (
     <>
       <div
-        className={`flex flex-grow items-center shadow-none text-black dark:text-white bg-gray-100 dark:bg-cyan-500 min-h-[56px] rounded-[10px] px-4 gap-4 ${otherClasses}`}
+        className={`flex flex-grow items-center border rounded-md p-2 gap-x-6 ${
+          iconPosition === 'left' ? 'pl-2 pr-4' : 'pl-4 pr-2'
+        } ${otherClasses}`}
+        style={{ width: '300px' }} 
       >
         {iconPosition === 'left' && (
           <Image
-            src="/search.svg"
+            src={mode === 'light' ? '/search.svg' : '/search-white.png'}
             alt="Search icon"
-            width={24}
-            height={24}
-            className="cursor-pointer"
+            width={20}
+            height={20}
+            className="cursor-pointer dark:text-white"
           />
         )}
 
         <Input
           type="text"
-          className="flex-grow border-none shadow-none outline-none text-sm text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-300"
+          className="flex-grow border-none outline-none text-sm text-black dark:text-white placeholder-gray-400 dark:placeholder-gray-300 "
           placeholder={placeholder}
           value={search}
-          onChange={(e)=>setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
         />
 
         {iconPosition === 'right' && (
           <Image
             src="/search.svg"
             alt="Search icon"
-            width={24}
-            height={24}
+            width={20}
+            height={20}
             className="cursor-pointer"
           />
         )}

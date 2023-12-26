@@ -34,6 +34,7 @@ const QuestionCard = async ({ _id, author, downvotes, title, tags, upvotes,views
     if (!userId) redirect('/sign-in');
 
     const mongoUser = await getUserById({ userId });
+    console.log(mongoUser);
 
     return (
       <div className="flex flex-col  text-black dark:text-white p-6 rounded-md shadow-md ">
@@ -61,7 +62,7 @@ const QuestionCard = async ({ _id, author, downvotes, title, tags, upvotes,views
         </div>
         <div className="flex items-center gap-3">
           <Image
-            src={author.picture || '/'}
+            src={author.picture}
            height={30}
            width={30}
             alt="Author's Profile Picture"

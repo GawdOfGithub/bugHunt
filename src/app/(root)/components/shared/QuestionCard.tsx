@@ -29,6 +29,7 @@ type Props = {
 };
 
 const QuestionCard = async ({ _id, author, downvotes, title, tags, upvotes,views }: Props) => {
+  //d
   try {
     const { userId } = auth();
     if (!userId) redirect('/sign-in');

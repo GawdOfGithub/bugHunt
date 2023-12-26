@@ -34,7 +34,7 @@ const QuestionCard = async ({ _id, author, downvotes, title, tags, upvotes,views
     if (!userId) redirect('/sign-in');
 
     const mongoUser = await getUserById({ userId });
-    console.log(mongoUser);
+   //ttsave
 
     return (
       <div className="flex flex-col  text-black dark:text-white p-6 rounded-md shadow-md ">

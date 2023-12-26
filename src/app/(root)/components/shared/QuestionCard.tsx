@@ -61,7 +61,7 @@ const QuestionCard = async ({ _id, author, downvotes, title, tags, upvotes,views
         </div>
         <div className="flex items-center gap-3">
           <Image
-            src={author.picture || '/default-avatar.png'}
+            src={author.picture ?? '/medal.svg'}
            height={30}
            width={30}
             alt="Author's Profile Picture"

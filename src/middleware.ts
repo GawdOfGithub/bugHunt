@@ -12,6 +12,7 @@ export default authMiddleware({
     '/community',
     '/collections',
     '/jobs',
+    '/'
     
 
   

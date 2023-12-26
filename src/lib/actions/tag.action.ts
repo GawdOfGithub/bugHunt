@@ -26,21 +26,10 @@ export async function getAllQuestionsByTags({params}:any)
     }
 
 }
-export asysnc function getQuestionsByTagId(params:getQuestionByTagIdParams)
-{
-    try
-    {
-        connectToDatabase()
-        const {tagId,page=1,pageSize=10,searchQuery} = params
-    }
-    catch(error)
-    {
-        console.log(error);
-    }
-}
 
 
-export async function getSavedQuestions(params:GetSavedQuestionsParams)
+
+export async function getSavedQuestions(params:any)
 {
     try
     {
@@ -51,7 +40,7 @@ export async function getSavedQuestions(params:GetSavedQuestionsParams)
         
     const user = await User.findOne({clerkId}).populate({
         path:'saved',
-        match:query,
+    
         options:{
             sort:{
                 createdAt:-1

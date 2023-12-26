@@ -95,7 +95,8 @@ const AnswerCard = async ({ _id, author, downvotes, title, tags, upvotes, answer
           <div key={author._id} className="flex gap-52 mt-10">
             <Avatar>
               <AvatarImage src={author.picture} alt={author.name} height="40" width="40" />
-              <AvatarFallback>{author?.name.slice(0, 1).toUpperCase()}</AvatarFallback>
+              <AvatarFallback>{author?.name?.slice(0, 1)?.toUpperCase() ?? ''}</AvatarFallback>
+
             </Avatar>
             <div>{author.name}</div>
           </div>

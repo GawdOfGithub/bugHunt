@@ -42,7 +42,7 @@ const page = async({searchParams}:SearchParamProps) => {
        
    
        {result && result?.questions?.length>0 ? 
-      result?.questions.map((question)=>
+      result?.questions.map((question:any)=>
       (
         <QuestionCard
         key={question._id}

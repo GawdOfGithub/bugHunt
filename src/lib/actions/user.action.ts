@@ -15,7 +15,7 @@ export default async function getUserById(params:any)
         const{userId} = params
         const user = await User.findOne({clerkId:userId})
         return user
-        console.log(user);
+        
     }
     catch(error)
     {
@@ -46,7 +46,7 @@ export async function getAllUsers({searchQuery,filter}:getAllUsersParams) {
             break;
         } 
         const users = await User.find(query).sort(sortOptions);
-        console.log(users);
+    
         return users;
     } catch (error) {
         console.log(error);
@@ -236,7 +236,7 @@ export async function getUserQuestions(params:GetUserStatsParam) {
     catch(error)
     {
         console.log(error);
-        console.log("success");
+    
     }
 
 }
@@ -259,6 +259,6 @@ export async function getUserAnswers(params:GetUserStatsParam)
     catch(error)
     {
         console.log(error);
-        console.log("success");
+        
     }
 }

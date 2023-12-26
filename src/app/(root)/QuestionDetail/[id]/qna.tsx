@@ -17,7 +17,7 @@ type Props = {
 
 const Qna = async({questionId}: Props) => {
   try{
-    console.log(questionId);
+    
 
   const result = await getQuestionById({id:questionId})
 

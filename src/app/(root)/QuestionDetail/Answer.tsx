@@ -56,7 +56,7 @@ const Answer = ({ mongoUser, question }: Props) => {
       });
       route.push('/');
 
-      console.log(values);
+    
     } catch (error) {
       console.log(error);
     }

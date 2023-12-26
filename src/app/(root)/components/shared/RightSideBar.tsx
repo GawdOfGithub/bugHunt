@@ -10,7 +10,7 @@ type Props = {};
 const RightSideBar = async (props: Props) => {
   try {
     const QuestionData = await getTopQuestions();
-    console.log(QuestionData);
+    
 
     return (
       <>

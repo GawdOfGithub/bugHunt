@@ -63,7 +63,7 @@ type Props = {
 
 const AnswerCard = async ({ _id, author, downvotes, title, tags, upvotes, answers,views}: Props) => {
   try {
-    console.log(`This is coming from here${answers[0]}`);
+    (`This is coming from here${answers[0]}`);
     const { userId } = auth();
     if (!userId) redirect('/sign-in');
 

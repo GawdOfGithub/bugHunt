@@ -26,7 +26,7 @@ const pathname = usePathname()
   
     
     
-    console.log(pathname);
+    
     return (
       <>
       <div className="sm-hidden">

@@ -21,7 +21,7 @@ type Props = {
 const Page = async ({ params }: Props) => {
 
   try {
-    console.log(params);
+  
     const { userId: clerkId } = auth()
 
     const userInfo = await getUserInfo({ userId: params.id })

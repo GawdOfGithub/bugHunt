@@ -20,7 +20,7 @@ if (pathname === "Profile" && userId) {
 
 
  const {isSignedIn} = useAuth()
- console.log(pathname);
+ 
   return (
     <>
     <div className="font-extrabold min-h-screen max-w-[300px] flex flex-col gap-5 sticky left-0 top-0 dark:text-white bg-white text-gray-800 shadow-light-300 dark:shadow-none max-sm:hidden dark:bg-black">

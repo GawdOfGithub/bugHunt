@@ -9,7 +9,7 @@ const AnswerTab = async({user}:Props)=>
 {
     const result = await getUserAnswers({userId:user})
 
-    console.log(result?.answers[0].question);
+  
     return (
         <>
           {result?.answers.map((answer) => (

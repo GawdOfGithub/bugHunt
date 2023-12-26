@@ -26,7 +26,7 @@ function CommunityFilter({ FilterData }: Props) {
     }
     else{
       setActive(item)
-      console.log(active);
+    
       
         const newUrl = formUrl({
           params:searchParams.toString(),

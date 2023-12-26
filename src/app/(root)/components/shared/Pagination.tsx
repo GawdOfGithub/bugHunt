@@ -4,8 +4,7 @@ import { useRouter,useSearchParams } from "next/navigation";
 import { formUrl } from "@/lib/utils";
 import { Button } from "../ui/button";
 export default function Pagination({totalPages}:any) {
-  console.log("kum kum");
-  console.log(totalPages);
+  
 
   const router = useRouter()
   const searchParams = useSearchParams()

@@ -33,7 +33,7 @@ import { useSearchParams,useRouter } from "next/navigation";
       }
       else{
         setActive(item)
-        console.log(active);
+    
         
           const newUrl = formUrl({
             params:searchParams.toString(),
@@ -45,10 +45,6 @@ import { useSearchParams,useRouter } from "next/navigation";
       
     }
 
-  }
-  const dip = ()=>
-  {
-    console.log("dip");
   }
  
     return (

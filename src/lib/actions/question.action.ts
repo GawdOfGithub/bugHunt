@@ -59,7 +59,7 @@ export async function createQuestion(params:any)
    try
     {
         connectToDatabase()
-    console.log(id);
+
     const question = await Question.findById(id)
     .populate({
         path: 'tags',
@@ -202,7 +202,7 @@ export async function getSavedQuestionById({id}:getQuestionById)
    try
     {
         connectToDatabase()
-    console.log(id);
+
     const question = await Question.findById(id)
     .populate({
         path: 'tags',

@@ -27,7 +27,7 @@ export async function POST(req: Request) {
     })
   }
  
-  // Get the body
+  // Get the bodyd
   const payload = await req.json()
   const body = JSON.stringify(payload);
  

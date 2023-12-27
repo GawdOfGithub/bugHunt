@@ -45,14 +45,14 @@ export async function POST(req: Request) {
     }) as WebhookEvent
   } catch (err) {
     console.error('Error verifying webhook:', err);
-    return new Response('Error occured', {
+    return new Response('hip hip ', {
       status: 400
     })
   }
 
 
   // Get the ID and type
-  const { id } = evt.data;
+
   const eventType = evt.type;
   console.log(eventType);
   console.log(eventType);
@@ -60,6 +60,7 @@ export async function POST(req: Request) {
  if(eventType=='user.created')
  {
     const {id,email_addresses,image_url,username,first_name,last_name} = evt.data
+    console.log(evt.data)
     const mongoUser = await createUser({
         clerkId:id,
         email:email_addresses[0].email_address,

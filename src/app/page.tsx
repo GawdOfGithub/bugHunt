@@ -13,6 +13,7 @@ import Hamburger from './(root)/components/shared/Hamburger';
 import Link from 'next/link';
 import Loading from '@/app/Loading'
 const Page = async ({ searchParams }: SearchParamProps) => {
+  
   const isLoading = false
   if(isLoading)
   {

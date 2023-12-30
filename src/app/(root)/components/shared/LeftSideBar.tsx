@@ -53,6 +53,7 @@ if (pathname === "Profile" && userId) {
               Sign Up
             </Button>
           </Link>
+          
         </div>
       </SignedOut>
     </div>

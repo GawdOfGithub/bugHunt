@@ -7,7 +7,6 @@ import Answer from "@/database/answer.model";
 import { GetQuestionParams,getQuestionById,QuestionVoteParams, DeleteQuestionParams } from "./shared.types";
 import { revalidatePath } from "next/cache";
 import Interaction from "@/database/interaction.model";
-import { PathParamsContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime";
 import { FilterQuery } from "mongoose";
 
 

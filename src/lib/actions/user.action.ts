@@ -58,7 +58,7 @@ export async function createUser(userData:CreateUserParams)
 {
     try{
         connectToDatabase()
-        console.log("trying");
+        console.log("trying to launch");
         const newUser = await User.create(userData)
     }
 

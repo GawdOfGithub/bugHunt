@@ -35,11 +35,11 @@ export default function RootLayout({
 }) {
   return (
  
-    <ClerkProvider>
+    
     
      
     <html lang="en">
-   
+   <ClerkProvider>
       <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <Providers>
       <ThemeContextProvider>
@@ -63,11 +63,11 @@ export default function RootLayout({
       </ThemeContextProvider>
       </Providers>
       </body>
-      
+      </ClerkProvider>
     </html>
 
     
-    </ClerkProvider>
+    
    
    
   )

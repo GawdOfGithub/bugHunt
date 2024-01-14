@@ -17,7 +17,7 @@ const {userId} = auth()
 
   
   return (
-    <div><Question mongoUser={JSON.stringify(mongoUser._id)}/>
+    <div><Question mongoUser={JSON.stringify(mongoUser?._id)}/>
     
     </div>
   )

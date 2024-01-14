@@ -26,8 +26,6 @@ const userSchema = new Schema(
     password:{type:String},
     bio:{type:String},
     picture:{type:String,required:true},
-    location:{type:String},
-    portfolioWebsite:{type:String},
     reputation:{type:Number},
     saved:[{type:Schema.Types.ObjectId,ref:'Question'}],
     joinedAt:{type:Date,default:Date.now}
@@ -37,3 +35,5 @@ const userSchema = new Schema(
 )
 const User = models.User || model<IUser>('User',userSchema)
 export default User
+
+

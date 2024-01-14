@@ -1,0 +1,28 @@
+{
+    "builds": [
+      {
+        "src": "next.config.js",
+        "use": "@vercel/next"
+      }
+    ],
+    "env": {
+
+        "NEXT_PUBLIC_CLERK_SIGN_IN_URL":"/sign-in",
+"NEXT_PUBLIC_CLERK_SIGN_UP_URL":"/sign-up",
+"NEXT_PUBLIC_TINY_EDITOR_API_KEY":"qpyiuiasjacc9rpuw43tpnxwl2afsn0ht6vfxjqkg9ptnvll",
+"MONGODB_URL":"mongodb+srv://anuragbhandari:ywq92IiT7PZVKjdx@cluster10.fkm3jm2.mongodb.net/?retryWrites=true&w=majority",
+"NEXT_CLERK_WEBHOOK_SECRET":"whsec_Vbmb3HlSTDzJfShGkWPBFlOVPd5byKR9",
+"NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY":"pk_test_Z2xvcmlvdXMtc3BhbmllbC03MS5jbGVyay5hY2NvdW50cy5kZXYk",
+"CLERK_SECRET_KEY":"sk_test_PCb1d1EsyhWtG0XAUHuF6z2u9BOe6vtTFJ0dgeIy7s"
+
+
+    }
+  }
+  
+  NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_TINY_EDITOR_API_KEY=qpyiuiasjacc9rpuw43tpnxwl2afsn0ht6vfxjqkg9ptnvll
+NEXT_CLERK_WEBHOOK_SECRET=whsec_Vbmb3HlSTDzJfShGkWPBFlOVPd5byKR9
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_Z2xvcmlvdXMtc3BhbmllbC03MS5jbGVyay5hY2NvdW50cy5kZXYk
+CLERK_SECRET_KEY=sk_test_PCb1d1EsyhWtG0XAUHuF6z2u9BOe6vtTFJ0dgeIy7s
+MONGODB_URL=mongodb+srv://anurag:6eyNmBwbpTu4X2WM@cluster0.tso1528.mongodb.net/?retryWrites=true&w=majority
